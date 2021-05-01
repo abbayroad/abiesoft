@@ -1,0 +1,15 @@
+{
+    "name": "asus/abiesoft",
+    "authors": [
+        {
+            "name": "Sukron Abbayroad",
+            "email": "sabbayroad@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AbieSoft\\": "./"
+        }
+    },
+    "require": {}
+}

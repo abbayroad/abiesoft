@@ -1,0 +1,38 @@
+#loader{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5000;
+    background-color: rgb(255,255,255,0.8);
+}
+
+.textloader{
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #111;
+    text-align: center;
+}
+
+.bg-cover{
+    background-image: url('../images/bg_cover.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.floki{
+    float: left;
+}
+
+.floka {
+    float: right;
+}
+
+.endflo{
+    clear: both;
+}
