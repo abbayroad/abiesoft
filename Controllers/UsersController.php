@@ -87,7 +87,7 @@ class UsersController extends Route
         $nama = Input::get('nama');
         $email = Input::get('email');
         $phone = Input::get('phone');
-        $grupid = 2;
+        $grupid = Input::get('grup_id');;
         $input = DB::terhubung()->perbarui('users', $id, array(
             'nama' => $nama,
             'email' => $email,

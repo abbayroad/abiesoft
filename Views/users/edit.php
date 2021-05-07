@@ -22,6 +22,7 @@ use AbieSoft\Sistem\Magic\Form; ?>
                                     'Nama' => ['input', 'nama', 'Nama User', 'setText', $ud->nama],
                                     'Email' => ['email', 'email', 'Email', 'setEmail', $ud->email],
                                     'Phone' => ['phone', 'phone', 'No. Hp', 'setNoHp', $ud->phone],
+                                    'GrupId' => ['hidden', 'grup_id', 'Grup Id', 'setClean', $ud->grup_id],
                                     'Simpan' => ['submit', 'btnsimpanperubahan']
                                 ), $ud->id);
                             }

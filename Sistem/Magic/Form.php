@@ -9,6 +9,7 @@ class Form
 
     public static function create(string $tabel = null, string $method = null, array $form)
     {
+        Reader::acak();
         echo "<form method='POST' id='" . $tabel . $method . "' name='" . $tabel . $method . "' action='#' enctype='multipart/form-data'>\n";
         if (is_array($form)) {
             foreach ($form as $f => $v) {
@@ -37,6 +38,10 @@ class Form
 
                 if ($tipe == "password") {
                     $input = "<div class='form-group'>\n<label for='" . $name . "'>" . $label . "</label>\n<input type='password' class='form-control'  id='" . $name . "' name='" . $name . "' placeholder='" . $placeholder . "' autocomplete='off'>\n</div>\n";
+                }
+
+                if ($tipe == "hidden") {
+                    $input = "<div class='form-group'><input type='hidden' class='form-control'  id='" . $name . "' name='" . $name . "' placeholder='" . $placeholder . "' autocomplete='off'>\n</div>\n";
                 }
 
                 if ($tipe == "file") {
@@ -137,6 +142,7 @@ class Form
 
     public static function update(string $tabel = null, string $method = null,  array $form, int $id)
     {
+        Reader::acak();
         echo "<form method='POST' id='" . $tabel . $method . "' name='" . $tabel . $method . "' action='#' enctype='multipart/form-data'>\n";
         if (is_array($form)) {
             foreach ($form as $f => $v) {
@@ -169,6 +175,10 @@ class Form
 
                 if ($tipe == "password") {
                     $input = "<div class='form-group'>\n<label for='" . $name . "'>" . $label . "</label>\n<input type='password' class='form-control'  id='" . $name . "' name='" . $name . "' placeholder='" . $placeholder . "'>\n</div>\n";
+                }
+
+                if ($tipe == "hidden") {
+                    $input = "<div class='form-group'><input type='hidden' class='form-control'  id='" . $name . "' name='" . $name . "' placeholder='" . $placeholder . "' value='" . $dbvalue . "' autocomplete='off'>\n</div>\n";
                 }
 
                 if ($tipe == "file") {
@@ -259,5 +269,16 @@ class Form
         Reader::validasi($method, $tabel, $txt);
 
         echo "</form>";
+    }
+
+    public static function delete($page)
+    {
+        //Reader::acak();
+        return '
+        <form id="formhapus" name="formhapus" method="POST" action="' . weburl . $page . '/delete" style="float: left;" onClick="return hapus({{ID}})">
+            <input type="hidden" value="' . Reader::token() . '" id="_token" name="_token">
+            <input type="hidden" value="{{ID}}" id="id" name="id">
+            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+        </form>';
     }
 }

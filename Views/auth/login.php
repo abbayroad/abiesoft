@@ -1,6 +1,9 @@
 <?php
 
 use AbieSoft\Sistem\Utility\Session;
+use AbieSoft\Sistem\Magic\Reader;
+
+Reader::acak();
 ?>
 <section id="content" class="m-t-md wrapper-md animated fadeInUp">
     <div class="container aside-xxl">

@@ -172,7 +172,6 @@ class Route
 
     public static function view(string $view, $data = null)
     {
-        Reader::acak();
         $layout = self::layoutRender();
         $css = self::cssRender();
         $top = self::topRender();

@@ -3,7 +3,9 @@
 namespace AbieSoft\Sistem\Magic;
 
 use AbieSoft\Sistem\Mysql\DB;
-// use AbieSoft\Sistem\Utility\Config;
+use AbieSoft\Sistem\Utility\Tanggal;
+use AbieSoft\Sistem\Utility\Hash;
+use AbieSoft\Sistem\Magic\Form;
 
 
 class Reader
@@ -38,8 +40,8 @@ class Reader
     public static function acak()
     {
         $ip = self::ip();
-        //$csrf = Hash::token();
-        $csrf = sha1(date('Y-m-d H:i'));
+        $csrf = Hash::token();
+        // $csrf = sha1(date('Y-m-d H:i'));
         $cek = DB::terhubung()->query("SELECT * FROM token WHERE ip = '" . $ip . "' ");
         if ($cek->hitung()) {
             DB::terhubung()->query("UPDATE token SET token = '" . $csrf . "' WHERE ip = '" . $ip . "' ");
@@ -69,7 +71,7 @@ class Reader
 
     public static function scanner(string $token)
     {
-        $allpin = DB::terhubung()->query("SELECT pin FROM users ");
+        $allpin = DB::terhubung()->query("SELECT id, pin FROM users");
         foreach ($allpin->hasil() as $user) {
             if ($token == sha1(self::token() . $user->pin)) {
                 return true;
@@ -232,15 +234,15 @@ class Reader
 
     public static function button(string $page, int $grupid)
     {
-        $ip = self::ip();
-        //$csrf = Hash::token();
-        $csrf = sha1(date('Y-m-d H:i'));
-        $cek = DB::terhubung()->query("SELECT * FROM token WHERE ip = '" . $ip . "' ");
-        if ($cek->hitung()) {
-            DB::terhubung()->query("UPDATE token SET token = '" . $csrf . "' WHERE ip = '" . $ip . "' ");
-        } else {
-            DB::terhubung()->input('token', array('ip' => $ip, 'token' => $csrf));
-        }
+        // $ip = self::ip();
+        $csrf = "";
+        // // $csrf = sha1(date('Y-m-d H:i'));
+        // $cek = DB::terhubung()->query("SELECT * FROM token WHERE ip = '" . $ip . "' ");
+        // if ($cek->hitung()) {
+        //     DB::terhubung()->query("UPDATE token SET token = '" . $csrf . "' WHERE ip = '" . $ip . "' ");
+        // } else {
+        //     DB::terhubung()->input('token', array('ip' => $ip, 'token' => $csrf));
+        // }
 
         $btnlihat = "";
         $btnedit = "";
@@ -258,11 +260,7 @@ class Reader
                 }
 
                 if (page . '_delete' == $aksesopsi) {
-                    $btndelete = '<form id="formhapus" name="formhapus" method="POST" action="' . weburl . $page . '/delete" style="float: left;" onClick="return hapus({{ID}})">    
-                        <input type="hidden" value="' . $csrf . '" id="_token" name="_token">  
-                        <input type="hidden" value="{{ID}}" id="id" name="id">  
-                        <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-                    </form>';
+                    $btndelete = Form::delete($page);
                 }
                 // echo $opsipage . "(" . strlen($opsipage) . ")" . "---" . $aksesopsi . "(" . strlen($aksesopsi) . ")" . " " . $status . "</br>";
             }
@@ -294,5 +292,14 @@ class Reader
             }
         }
         return $status;
+    }
+
+    public static function tanggal($part, $model, $val)
+    {
+        switch ($part) {
+            case 'bulan':
+                return Tanggal::bulan($model, $val);
+                break;
+        }
     }
 }

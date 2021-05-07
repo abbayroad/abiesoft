@@ -2,6 +2,9 @@
 
 use AbieSoft\Sistem\Utility\Session;
 use AbieSoft\Sistem\Http\Lanjut;
+use AbieSoft\Sistem\Magic\Reader;
+
+Reader::acak();
 
 if (Session::ada('reset')) {
 ?>
