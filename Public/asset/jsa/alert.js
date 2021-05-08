@@ -14,7 +14,23 @@ function berhasil(txtStatus) {
 }
 
 function hapus(ID){
-    var konfirmasi = confirm("Ingin harus data? " + ID);
+    var urlhapus = document.forms['formhapus']['url'].value;
+
+    var returndetailkonfirmasi = function () {
+        var detailhapus = "";
+        $.ajax({
+            async: false,
+            global: false,
+            url:urlhapus+"?id="+ID+"/konfirmasi",
+            type: "GET",
+            success:function(msgkonfirmasi) {
+                detailhapus = msgkonfirmasi;
+            }
+        });
+        return detailhapus;
+    }();
+
+    konfirmasi = confirm("Ingin hapus data " + returndetailkonfirmasi + "?");
     if (konfirmasi == true) {
         var formData = new FormData(this);
         $.ajax({

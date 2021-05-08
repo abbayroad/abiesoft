@@ -276,6 +276,7 @@ class Form
         //Reader::acak();
         return '
         <form id="formhapus" name="formhapus" method="POST" action="' . weburl . $page . '/delete" style="float: left;" onClick="return hapus({{ID}})">
+            <input type="hidden" value="' . weburl . $page . '" id="url" name="url">
             <input type="hidden" value="' . Reader::token() . '" id="_token" name="_token">
             <input type="hidden" value="{{ID}}" id="id" name="id">
             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>

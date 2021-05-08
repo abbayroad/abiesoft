@@ -45,8 +45,8 @@ use AbieSoft\Sistem\Utility\Config; ?>
                     <table class="table table-striped b-t b-light">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama</th>
+                                <th style='width: 80px;'>No</th>
+                                <th style='width: 200px;'>Nama</th>
                                 <th>Akses</th>
                                 <th style='width: 200px;'>Opsi</th>
                             </tr>

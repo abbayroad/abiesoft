@@ -294,12 +294,36 @@ class Reader
         return $status;
     }
 
-    public static function tanggal($part, $model, $val)
+    public static function tanggal(string $part, string $model, string $val): string
     {
         switch ($part) {
             case 'bulan':
                 return Tanggal::bulan($model, $val);
                 break;
+
+            case 'dt':
+                return Tanggal::dt($model, $val);
+                break;
         }
+    }
+
+    public static function numbering(string $text): string
+    {
+        $textjadi = "";
+        if (count(explode(",", $text)) == 1) {
+            $textjadi = $text;
+        } else {
+            $total = count(explode(",", $text));
+            for ($i = 0; $i < $total; $i++) {
+                $no = $i + 1;
+                $textjadi .= "<div>
+                                <div style='float: left; width: 20px;'>" . $no . "</div>
+                                <div style='float: left;'>" . explode(",", $text)[$i] . "</div>
+                                <div style='clear: both;'></div>
+                                <div style='margin-top: 5px;'></div>
+                              </div>";
+            }
+        }
+        return $textjadi;
     }
 }

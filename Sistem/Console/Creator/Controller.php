@@ -102,6 +102,12 @@ class Controller extends Command
         fwrite($createController, $isiDefault);
         $isiDefault = "    } \n \n";
         fwrite($createController, $isiDefault);
+        $isiDefault = "    public function konfirmasi(int $" . "" . "id){ \n";
+        fwrite($createController, $isiDefault);
+        $isiDefault = "        // Konfirmasi ini untuk menampilkan data yang akan dihapus. \n";
+        fwrite($createController, $isiDefault);
+        $isiDefault = "    } \n \n";
+        fwrite($createController, $isiDefault);
         $isiDefault = "    public function baru(){ \n";
         fwrite($createController, $isiDefault);
         $isiDefault = "        // return parent::view(view: '" . strtolower(str_replace('Controller', '', $command[2])) . ".baru'); \n";

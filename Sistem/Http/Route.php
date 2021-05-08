@@ -32,6 +32,7 @@ class Route
         Route::get('/' . $path . '/detail', [$controller, 'detail']);
         Route::get('/' . $path . '/edit', [$controller, 'edit']);
         Route::get('/' . $path . '/data', [$controller, 'loaddata']);
+        Route::get('/' . $path . '/konfirmasi', [$controller, 'konfirmasi']);
         Route::post('/' . $path . '/create', [$controller, 'create']);
         Route::post('/' . $path . '/update', [$controller, 'update']);
         Route::post('/' . $path . '/delete', [$controller, 'delete']);
@@ -146,7 +147,7 @@ class Route
                 }
             } else {
 
-                if ($opsi == "edit" or $opsi == "detail") {
+                if ($opsi == "edit" or $opsi == "detail" or $opsi == "konfirmasi") {
                     if (isset($_GET['id'])) {
                         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
                         if ($id != "") {

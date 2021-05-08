@@ -26,16 +26,23 @@ class GrupController extends Route
         $datalist = array();
         foreach ($datagrup->hasil() as $grup) {
             $trid = $grup->id;
-            $akses = $grup->akses;
             $itemgrup = new GrupController();
             $itemgrup->nama = $grup->nama;
-            $itemgrup->akses = $akses;
+            $itemgrup->akses = "Lihat detail";
             $itemgrup->opsi = str_replace('{{ID}}', $trid, btnopsi);
             $datalist[] = $itemgrup;
             $datajson = json_encode($datalist);
         }
 
         echo $datajson;
+    }
+
+    public function konfirmasi($id)
+    {
+        $cekdata = Grup::only($id);
+        foreach ($cekdata as $cd) {
+            echo $cd->nama;
+        }
     }
 
     public function baru()

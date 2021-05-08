@@ -39,6 +39,14 @@ class UsersController extends Route
         echo $datajson;
     }
 
+    public function konfirmasi($id)
+    {
+        $cekdata = Users::only($id);
+        foreach ($cekdata as $cd) {
+            echo $cd->nama;
+        }
+    }
+
     public function baru()
     {
         return parent::view(view: 'users.baru');
