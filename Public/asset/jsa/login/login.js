@@ -28,7 +28,7 @@ $('form#loginform').submit(function(e) {
                     document.getElementById('btnlogin').innerHTML = 'Login Aplikasi';
                     document.getElementById('password').value = '';
                     gagal(msg);
-                    document.getElementById('konfirmasi').innerHTML = '<a href="/konfirmasi" class="pull-right m-t-xs"><small>Lupa password?</small></a>';
+                    document.getElementById('konfirmasi').innerHTML = '<div style="text-align: center; margin-top: 10px;"><a href="/konfirmasi" class="konfirmasi">Lupa password?</a></div>';
                     return false;
                 } else {
                     document.getElementById('btnlogin').disabled = false;

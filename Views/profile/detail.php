@@ -2,6 +2,7 @@
 
 use AbieSoft\Sistem\Magic\Form;
 use AbieSoft\Sistem\Utility\Session;
+use AbieSoft\Sistem\Magic\Reader;
 
 ?>
 <section id="content">
@@ -84,7 +85,7 @@ use AbieSoft\Sistem\Utility\Session;
                                         ?>
                                             <li class="list-group-item">
                                                 <span class="clear">
-                                                    <small class="pull-right"><?php echo $aktifitas->dibuat; ?></small>
+                                                    <small class="pull-right"><?php echo Reader::tanggal("dt", "tglfull", $aktifitas->dibuat) . " pukul " . Reader::tanggal("dt", "jam", $aktifitas->dibuat) . " WIB"; ?></small>
                                                     <strong class="block"><?php echo $aktifitas->model; ?></strong>
                                                     <small>
                                                         <div>

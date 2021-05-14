@@ -4,23 +4,21 @@ use AbieSoft\Sistem\Utility\Config;
 use AbieSoft\Sistem\Mysql\DB;
 
 ?>
-<section id='content'>
-    <section class='vbox'>
-        <section class='scrollable padder'>
-            <ul class='breadcrumb no-border no-radius b-b b-light pull-in'>
-                <li><a href=''><i class='fa fa-home'></i> Home</a></li>
-                <li><a href='<?php echo weburl; ?>grup'>Grup</a></li>
-                <li class='active'>Detail</li>
-            </ul>
-            <div class='m-b-md'>
-                <h3 class='m-b-none'>Detail Grup</h3>
-            </div>
-            <section class="panel panel-default">
-                <header class="panel-heading">
-                    Tabel Grup
-                </header>
-                <div class="table-responsive">
-                    <table class="table table-striped b-t b-light">
+<main>
+    <div class="page-header">
+        <h1>Grup</h1>
+        <div class="header-opsi">
+            <button onClick=window.location.href="<?php echo weburl; ?>grup">
+                <span class="las la-bars"></span>
+                <span class="label-opsi">List</span>
+            </button>
+        </div>
+    </div>
+    <section class="grid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card-tabel">
+                    <table>
                         <thead>
                             <tr>
                                 <th style='width: 50px;'>No</th>
@@ -43,80 +41,80 @@ use AbieSoft\Sistem\Mysql\DB;
                                         ?>
                                             <div>
                                                 <?php
-                                                echo "<div>" . $akses;
+                                                echo "<div style='font-size: .9rem;'>" . $akses;
                                                 if ($akses != "logout" and $akses != "setprofilenama" and $akses != "setprofileemail" and $akses != "setprofilephone" and $akses != "setprofilephoto") {
-                                                    echo "<div style='margin-left: 30px; border-bottom: 1px solid #eee;'>";
-                                                    echo "<div class='floki'>Index</div>";
-                                                    $status1 = "<div class='floka text-danger'>(Ditolak)</div>";
+                                                    echo "<div style='font-size: .9rem; margin-left: 30px; border-bottom: 1px solid #eee;'>";
+                                                    echo "<div class='floki' style='font-size: .9rem;'>Index</div>";
+                                                    $status1 = "<div class='floka text-danger' style='font-size: .9rem;'>(Ditolak)</div>";
                                                     foreach (explode(",", $grup->act) as $act) {
                                                         if ($akses == explode("_", $act)[0] and explode("_", $act)[1] == "index") {
-                                                            $status1 = "<div class='floka text-primary'>(diijinkan)</div>";
+                                                            $status1 = "<div class='floka text-primary' style='font-size: .9rem;'>(diijinkan)</div>";
                                                         }
                                                     }
                                                     echo $status1;
                                                     echo "<div class='endflo'></div>";
                                                     echo "</div>";
                                                     echo "<div style='margin-left: 30px; border-bottom: 1px solid #eee;'>";
-                                                    echo "<div class='floki'>Baru</div>";
-                                                    $status2 = "<div class='floka text-danger'>(Ditolak)</div>";
+                                                    echo "<div class='floki' style='font-size: .9rem;'>Baru</div>";
+                                                    $status2 = "<div class='floka text-danger' style='font-size: .9rem;'>(Ditolak)</div>";
                                                     foreach (explode(",", $grup->act) as $act) {
                                                         if ($akses == explode("_", $act)[0] and explode("_", $act)[1] == "baru") {
-                                                            $status2 = "<div class='floka text-primary'>(diijinkan)</div>";
+                                                            $status2 = "<div class='floka text-primary' style='font-size: .9rem;'>(diijinkan)</div>";
                                                         }
                                                     }
                                                     echo $status2;
                                                     echo "<div class='endflo'></div>";
                                                     echo "</div>";
                                                     echo "<div style='margin-left: 30px; border-bottom: 1px solid #eee;'>";
-                                                    echo "<div class='floki'>Edit</div>";
-                                                    $status3 = "<div class='floka text-danger'>(Ditolak)</div>";
+                                                    echo "<div class='floki' style='font-size: .9rem;'>Edit</div>";
+                                                    $status3 = "<div class='floka text-danger' style='font-size: .9rem;'>(Ditolak)</div>";
                                                     foreach (explode(",", $grup->act) as $act) {
                                                         if ($akses == explode("_", $act)[0] and explode("_", $act)[1] == "edit") {
-                                                            $status3 = "<div class='floka text-primary'>(diijinkan)</div>";
+                                                            $status3 = "<div class='floka text-primary' style='font-size: .9rem;'>(diijinkan)</div>";
                                                         }
                                                     }
                                                     echo $status3;
                                                     echo "<div class='endflo'></div>";
                                                     echo "</div>";
                                                     echo "<div style='margin-left: 30px; border-bottom: 1px solid #eee;'>";
-                                                    echo "<div class='floki'>Detail</div>";
-                                                    $status4 = "<div class='floka text-danger'>(Ditolak)</div>";
+                                                    echo "<div class='floki' style='font-size: .9rem;'>Detail</div>";
+                                                    $status4 = "<div class='floka text-danger' style='font-size: .9rem;'>(Ditolak)</div>";
                                                     foreach (explode(",", $grup->act) as $act) {
                                                         if ($akses == explode("_", $act)[0] and explode("_", $act)[1] == "detail") {
-                                                            $status4 = "<div class='floka text-primary'>(diijinkan)</div>";
+                                                            $status4 = "<div class='floka text-primary' style='font-size: .9rem;'>(diijinkan)</div>";
                                                         }
                                                     }
                                                     echo $status4;
                                                     echo "<div class='endflo'></div>";
                                                     echo "</div>";
                                                     echo "<div style='margin-left: 30px; border-bottom: 1px solid #eee;'>";
-                                                    echo "<div class='floki'>Create</div>";
-                                                    $status5 = "<div class='floka text-danger'>(Ditolak)</div>";
+                                                    echo "<div class='floki' style='font-size: .9rem;'>Create</div>";
+                                                    $status5 = "<div class='floka text-danger' style='font-size: .9rem;'>(Ditolak)</div>";
                                                     foreach (explode(",", $grup->act) as $act) {
                                                         if ($akses == explode("_", $act)[0] and explode("_", $act)[1] == "create") {
-                                                            $status5 = "<div class='floka text-primary'>(diijinkan)</div>";
+                                                            $status5 = "<div class='floka text-primary' style='font-size: .9rem;'>(diijinkan)</div>";
                                                         }
                                                     }
                                                     echo $status5;
                                                     echo "<div class='endflo'></div>";
                                                     echo "</div>";
                                                     echo "<div style='margin-left: 30px; border-bottom: 1px solid #eee;'>";
-                                                    echo "<div class='floki'>Update</div>";
-                                                    $status6 = "<div class='floka text-danger'>(Ditolak)</div>";
+                                                    echo "<div class='floki' style='font-size: .9rem;'>Update</div>";
+                                                    $status6 = "<div class='floka text-danger' style='font-size: .9rem;'>(Ditolak)</div>";
                                                     foreach (explode(",", $grup->act) as $act) {
                                                         if ($akses == explode("_", $act)[0] and explode("_", $act)[1] == "update") {
-                                                            $status6 = "<div class='floka text-primary'>(diijinkan)</div>";
+                                                            $status6 = "<div class='floka text-primary' style='font-size: .9rem;'>(diijinkan)</div>";
                                                         }
                                                     }
                                                     echo $status6;
                                                     echo "<div class='endflo'></div>";
                                                     echo "</div>";
                                                     echo "<div style='margin-left: 30px; border-bottom: 1px solid #eee;'>";
-                                                    echo "<div class='floki'>Delete</div>";
-                                                    $status7 = "<div class='floka text-danger'>(Ditolak)</div>";
+                                                    echo "<div class='floki' style='font-size: .9rem;'>Delete</div>";
+                                                    $status7 = "<div class='floka text-danger' style='font-size: .9rem;'>(Ditolak)</div>";
                                                     foreach (explode(",", $grup->act) as $act) {
                                                         if ($akses == explode("_", $act)[0] and explode("_", $act)[1] == "delete") {
-                                                            $status7 = "<div class='floka text-primary'>(diijinkan)</div>";
+                                                            $status7 = "<div class='floka text-primary' style='font-size: .9rem;'>(diijinkan)</div>";
                                                         }
                                                     }
                                                     echo $status7;
@@ -138,8 +136,7 @@ use AbieSoft\Sistem\Mysql\DB;
                         </tbody>
                     </table>
                 </div>
-            </section>
-        </section>
+            </div>
+        </div>
     </section>
-    <a href='#' class='hide nav-off-screen-block' data-toggle='class:nav-off-screen' data-target='#nav'></a>
-</section>
+</main>

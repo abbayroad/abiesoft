@@ -79,7 +79,7 @@ class Form
                 if ($tipe == "submit") {
                     $idbutton = $name;
                     $labelbutton = $label;
-                    $input = "<div class='form-button'>\n" . CSRF . "<button class='btn btn-primary' type='submit' id='" . $name . "'>" . $label . "</button>\n</div>\n";
+                    $input = "<div class='form-group'>\n" . CSRF . "<button class='button' type='submit' id='" . $name . "'>" . $label . "</button>\n</div>\n";
                 }
 
                 echo $input;
@@ -216,7 +216,7 @@ class Form
                 if ($tipe == "submit") {
                     $idbutton = $name;
                     $labelbutton = $label;
-                    $input = "<div class='form-button'>\n<input type='hidden' id='id' name='id' value='" . $id . "'>" . CSRF . "<button class='btn btn-primary' type='submit' id='" . $name . "'>" . $label . "</button>\n</div>\n";
+                    $input = "<div class='form-group'>\n<input type='hidden' id='id' name='id' value='" . $id . "'>" . CSRF . "<button class='button' type='submit' id='" . $name . "'>" . $label . "</button>\n</div>\n";
                 }
 
                 echo $input;
@@ -273,13 +273,12 @@ class Form
 
     public static function delete($page)
     {
-        //Reader::acak();
         return '
-        <form id="formhapus" name="formhapus" method="POST" action="' . weburl . $page . '/delete" style="float: left;" onClick="return hapus({{ID}})">
+        <form id="formhapus" name="formhapus" method="POST" action="' . weburl . $page . '/delete" style="float: right;" onClick="return hapus({{ID}})">
             <input type="hidden" value="' . weburl . $page . '" id="url" name="url">
             <input type="hidden" value="' . Reader::token() . '" id="_token" name="_token">
             <input type="hidden" value="{{ID}}" id="id" name="id">
-            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+            <button type="submit"  class="hapus"><span class="las la-trash"></span><span class="label-opsi">Hapus</span></button>
         </form>';
     }
 }

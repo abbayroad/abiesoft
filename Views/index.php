@@ -1,15 +1,22 @@
-<section id='content'>
-    <section class='vbox'>
-        <section class='scrollable padder'>
-            <ul class='breadcrumb no-border no-radius b-b b-light pull-in'>
-                <li><a href=''><i class='fa fa-home'></i> Home</a></li>
-                <li class='active'>Dashboard</li>
-            </ul>
-            <div></div>
-            <div class='m-b-md'>
-                <h3 class='m-b-none'>Dashboard</h3>
+<main>
+    <div class="page-header">
+        <h1>Dashboard</h1>
+        <div class="header-opsi">
+            <button>
+                <span class="las la-bars"></span>
+                <span class="label-opsi">List</span>
+            </button>
+            <button>
+                <span class="las la-plus"></span>
+                <span class="label-opsi">Buat</span>
+            </button>
+        </div>
+    </div>
+    <section class="grid">
+        <div class="row">
+            <div class="col-12">
+                Dashboard
             </div>
-        </section>
+        </div>
     </section>
-    <a href='#' class='hide nav-off-screen-block' data-toggle='class:nav-off-screen' data-target='#nav'></a>
-</section>
+</main>

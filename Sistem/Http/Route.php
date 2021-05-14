@@ -255,12 +255,8 @@ class Route
     {
         ob_start();
         $result = "";
-        $result .= "<script src='" . weburl . "asset/js/jquery.min.js'></script> \n    ";
-        $result .= "<script src='" . weburl . "asset/js/bootstrap.js'></script> \n    ";
-        $result .= "<script src='" . weburl . "asset/js/app.js'></script> \n    ";
-        $result .= "<script src='" . weburl . "asset/js/app.plugin.js'></script> \n    ";
-        $result .= "<script src='" . weburl . "asset/js/slimscroll/jquery.slimscroll.min.js'></script> \n    ";
-        $result .= "<script src='" . weburl . "asset/js/datatables/jquery.dataTables.min.js'></script> \n    ";
+        $result .= "<script src='" . weburl . "asset/js/jquery-3.6.0.min.js'></script> \n    ";
+        $result .= "<script src='" . weburl . "asset/js/abiesoft_ui.js'></script> \n    ";
         return $result . "" . ob_get_clean();
     }
 

@@ -10,34 +10,26 @@ $auth = new AuthUser();
 
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title><?php echo Config::envReader('WEB_TITEL'); ?></title>
     {{CSS}}
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="<?php echo weburl; ?>asset/css/abiesoft.css">
 </head>
 
 <body>
-    <div id='loader'>
-        <div class="textloader">
-            Mohon Tunggu ..
+    <input type="checkbox" name="" id="sidebar-toggle">
+    <?php if ($auth->isLogin()) { ?>
+        {{Side}}
+        <div class="main-content">
+            {{Top}}
+        <?php } ?>
+        {{Konten}}
+        <?php if ($auth->isLogin()) { ?>
         </div>
-    </div>
-    <section class="vbox">
-        {{Top}}
-        <section>
-            <section class="hbox stretch">
-                {{Side}}
-                {{Konten}}
-                <aside class="bg-light lter b-l aside-md hide" id="notes">
-                    <div class="wrapper">Notifikasi</div>
-                </aside>
-            </section>
-        </section>
-    </section>
-
+    <?php } ?>
     {{JS}}
-
     <?php
     $page = page;
     if ($page != "") {
@@ -57,10 +49,6 @@ $auth = new AuthUser();
     <script src="<?php echo weburl; ?>asset/jsa/validasi.js"></script>
     <script>
     {{JSA}}
-    window.addEventListener("load", function(){
-    const loader = document.querySelector('#loader');
-    loader.className = "hidden";
-    });
     </script>
 </body>
 

@@ -62,7 +62,7 @@ class AuthUser
                     $idu = (int)$user->id;
                     Session::simpan(Config::envReader("SESI_ID"), $idu);
                     DB::terhubung()->input('aktifitas', array(
-                        'users_id' => $this->_isLogin,
+                        'users_id' => $idu,
                         'model' => 'Login Aplikasi',
                         'ip' => Reader::ip(),
                         'perangkat' => Reader::perangkat(),
@@ -129,7 +129,7 @@ class AuthUser
                         'perangkat' => Reader::perangkat(),
                         'catatan' => '-'
                     ));
-                    Session::pesan('passwordbaru', 'Password baru telah dibuah');
+                    Session::pesan('passwordbaru', 'Password baru telah diubah');
                     echo "Y";
                 } else {
                     echo "Jawaban salah";

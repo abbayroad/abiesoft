@@ -252,11 +252,11 @@ class Reader
         foreach ($cekakses->hasil() as $ca) {
             foreach (explode(",", $ca->act) as $aksesopsi) {
                 if (page . '_detail' == $aksesopsi) {
-                    $btnlihat = '<button type="button" class="btn btn-sm" onClick=window.location.href="' . weburl . $page . '?id={{ID}}/detail">Lihat</button>';
+                    $btnlihat = '<button onClick=window.location.href="' . weburl . $page . '?id={{ID}}/detail"><span class="las la-eye"></span><span class="label-opsi">Lihat</span></button>';
                 }
 
                 if (page . '_edit' == $aksesopsi) {
-                    $btnedit = '<button type="button" class="btn btn-sm" onClick=window.location.href="' . weburl . $page . '?id={{ID}}/edit">Edit</button>';
+                    $btnedit = '<button onClick=window.location.href="' . weburl . $page . '?id={{ID}}/edit"><span class="las la-edit"></span><span class="label-opsi">Edit</span></button>';
                 }
 
                 if (page . '_delete' == $aksesopsi) {
@@ -270,7 +270,7 @@ class Reader
 
 
 
-        $button = ' <div class="btn-group">
+        $button = ' <div class="opsi-tabel">
                         ' . $btnlihat . '
                         ' . $btnedit . '
                         ' . $btndelete . '
