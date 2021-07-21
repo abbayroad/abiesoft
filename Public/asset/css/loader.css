@@ -1,20 +1,28 @@
+#loading img{
+    width: 100px;
+    position: absolute;  
+    z-index: 99;
+    margin-top: -8px;
+    margin-left: -8px;
+}
 .lds-ring {
     display: inline-block;
     position: relative;
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
 }
 .lds-ring div {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 64px;
-    height: 64px;
-    margin: 8px;
-    border: 8px solid #444;
+    width: 105px;
+    height: 105px;
+    margin: 3px;
+    border: 3px solid red;
+    border-image: linear-gradient(to right, rgb(60, 181, 181), rgb(229, 59, 81));
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #444 transparent transparent transparent;
+    border-color: red transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;

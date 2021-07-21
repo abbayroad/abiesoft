@@ -5,7 +5,7 @@ use AbieSoft\Sistem\Magic\Reader;
 <div class='container-auth'>
     <div class='auth-box br10'>
         <div class='w50 ilustrasi'>
-            <img src="/asset/properti/ilustrasi/il_login.png">
+            <img src="/asset/properti/icon/logo_abiesoft.png">
         </div>
         <div class='w50'>
             <form method='post' action='' id='registrasi' name='registrasi'>
@@ -23,7 +23,7 @@ use AbieSoft\Sistem\Magic\Reader;
                 </div>
                 <div class='form-control'>
                     <input type='password' id='password' name='password' placeholder="Password">
-                    <i class="fa fa-eye"></i>
+                    <span id='btnShowHidePass' onclick="showPass()"><i class="fa fa-eye"></i></span>
                 </div>
                 <div class='form-bottom'>
                     <input type='hidden' value='<?php echo Reader::token(); ?>' id='_token' name='_token'>

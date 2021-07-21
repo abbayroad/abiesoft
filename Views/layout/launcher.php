@@ -8,6 +8,7 @@ use AbieSoft\Sistem\Utility\Config; ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo weburl; ?>asset/fa/css/all.css">
     {{CSS}}
     <title>
         <?php if (page != "") {
@@ -20,6 +21,7 @@ use AbieSoft\Sistem\Utility\Config; ?>
 
 <body>
     <div id='loading'>
+        <img src="<?php echo weburl; ?>asset/properti/icon/logo_abiesoft.png">
         <div class="lds-ring">
             <div></div>
             <div></div>

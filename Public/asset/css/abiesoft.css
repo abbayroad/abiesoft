@@ -29,7 +29,7 @@
 }
 
 :root{
-    --std: #F5F9FF;
+    --std: #eee;
     --putih: #fff;
     --abu: #444444;
     --f5: #f5f5f5;
@@ -72,7 +72,7 @@ body{
     margin: 0;
     padding: 0;
     color: var(--abu);
-    background-color: var(--std);
+    background-color: var(--f5);
 }
 
 /* Properti */
@@ -111,6 +111,7 @@ body{
     display: flex;
     align-content: space-between;
     overflow: hidden;
+    border: 1px solid #eee;
 }
 
 .auth-box {
@@ -125,11 +126,45 @@ body{
 }
 
 .auth-box div.ilustrasi img {
-    width: 200px;
+    width: 140px;
 }
 
 .auth-box div form {
     padding: 20px;
+}
+
+
+@media only screen and (max-width: 1100px) {
+    .auth-box{
+        width: 600px;
+        background-color: var(--putih);
+        display: flex;
+        align-content: space-between;
+        overflow: hidden;
+        border: 1px solid #eee;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .auth-box{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: var(--putih);
+        display: flex;
+        align-content: center;
+        align-items: center;
+        overflow: hidden;
+        border: 1px solid #eee;
+    }
+
+    .auth-box div{
+        display: block;
+        width: 100%;
+    }
 }
 
 
@@ -159,6 +194,23 @@ form span {
     outline: none;
     padding: 9px 14px;
     border-radius: 3px;
+}
+
+.form-control input[type='password']{
+    padding-right: 20px;
+}
+
+.form-control span i {
+    position: relative;
+    float: right;
+    margin-right: 13px;
+    margin-top: -37px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.form-control span i:hover {
+    color: #888;
 }
 
 .form-bottom {

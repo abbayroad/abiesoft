@@ -54,3 +54,17 @@ $('form#registrasi').submit(function(e) {
         return false;
     }
 });
+
+function showPass(){
+    document.getElementById('btnShowHidePass').innerHTML="<i class='fa fa-eye-slash'></i>";
+    $('#btnShowHidePass').attr('onClick', 'hidePass()');
+    $('#password').attr('type', 'text');
+    return false;
+}
+
+function hidePass(){
+    document.getElementById('btnShowHidePass').innerHTML="<i class='fa fa-eye'></i>";
+    $('#btnShowHidePass').attr('onClick', 'showPass()');
+    $('#password').attr('type', 'password');
+    return false;
+}
