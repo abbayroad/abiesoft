@@ -128,7 +128,7 @@ class Controller extends Command
         fwrite($createController, $isiDefault);
         $isiDefault = "    public function create(){ \n";
         fwrite($createController, $isiDefault);
-        $isiDefault = "        // return " . ucfirst(strtolower(str_replace('Controller', '', $command[2]))) . "::post(); \n";
+        $isiDefault = "        // return " . ucfirst(strtolower(str_replace('Controller', '', $command[2]))) . "::postCreate(); \n";
         fwrite($createController, $isiDefault);
         $isiDefault = "    } \n \n";
         fwrite($createController, $isiDefault);

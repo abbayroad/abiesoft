@@ -41,17 +41,25 @@ class Reader
     {
         $ip = self::ip();
         $csrf = Hash::token();
-        // $csrf = sha1(date('Y-m-d H:i'));
         $cek = DB::terhubung()->query("SELECT * FROM token WHERE ip = '" . $ip . "' ");
         if ($cek->hitung()) {
-            DB::terhubung()->query("UPDATE token SET token = '" . $csrf . "' WHERE ip = '" . $ip . "' ");
+            DB::terhubung()->query("UPDATE token SET generate_token = '" . $csrf . "' WHERE ip = '" . $ip . "' ");
         } else {
-            DB::terhubung()->input('token', array('ip' => $ip, 'token' => $csrf));
+            DB::terhubung()->input('token', array('ip' => $ip, 'generate_token' => $csrf));
         }
         define('CSRF', " <input type='hidden' name='_token' value='" . $csrf . "'> \n");
     }
 
-    public static function api(string $kode): string
+    public static function generate_api(): bool
+    {
+        $create = DB::terhubung()->input("api", array('apikey' => Hash::unique()));
+        if ($create) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function api(string $kode): bool
     {
         $cek = DB::terhubung()->query("SELECT * FROM api WHERE apikey = '" . $kode . "' ");
         if ($cek->hitung()) {
@@ -65,11 +73,11 @@ class Reader
         $ip = self::ip();
         $sesitoken = DB::terhubung()->query("SELECT * FROM token WHERE ip = '" . $ip . "' ");
         foreach ($sesitoken->hasil() as $token) {
-            return $token->token;
+            return $token->generate_token;
         }
     }
 
-    public static function scanner(string $token)
+    public static function scanner(string $token): bool
     {
         $allpin = DB::terhubung()->query("SELECT id, pin FROM users");
         foreach ($allpin->hasil() as $user) {
@@ -234,16 +242,7 @@ class Reader
 
     public static function button(string $page, int $grupid)
     {
-        // $ip = self::ip();
         $csrf = "";
-        // // $csrf = sha1(date('Y-m-d H:i'));
-        // $cek = DB::terhubung()->query("SELECT * FROM token WHERE ip = '" . $ip . "' ");
-        // if ($cek->hitung()) {
-        //     DB::terhubung()->query("UPDATE token SET token = '" . $csrf . "' WHERE ip = '" . $ip . "' ");
-        // } else {
-        //     DB::terhubung()->input('token', array('ip' => $ip, 'token' => $csrf));
-        // }
-
         $btnlihat = "";
         $btnedit = "";
         $btndelete = "";
@@ -262,7 +261,6 @@ class Reader
                 if (page . '_delete' == $aksesopsi) {
                     $btndelete = Form::delete($page);
                 }
-                // echo $opsipage . "(" . strlen($opsipage) . ")" . "---" . $aksesopsi . "(" . strlen($aksesopsi) . ")" . " " . $status . "</br>";
             }
         }
 

@@ -9,6 +9,7 @@ use AbieSoft\Sistem\Magic\Reader;
 use AbieSoft\Sistem\Auth\AuthUser;
 use AbieSoft\Sistem\Utility\Input;
 use AbieSoft\Sistem\Mysql\DB;
+use AbieSoft\Sistem\Utility\Config;
 
 class Route
 {
@@ -23,6 +24,21 @@ class Route
     public static function post(string $path, string|array $callback)
     {
         self::$routes['post'][$path] = $callback;
+    }
+
+    public static function sistem(string $controller)
+    {
+        Route::get('/wellcome', [$controller, 'index']);
+        Route::get('/login', [$controller, 'login']);
+        Route::get('/reset', [$controller, 'reset']);
+        Route::get('/lupa', [$controller, 'lupa']);
+        Route::get('/registrasi', [$controller, 'registrasi']);
+        Route::get('/logout', [$controller, 'logout']);
+        Route::get('/webservice', [WebserviceController::class, 'index']);
+        Route::post('/login', [$controller, 'setlogin']);
+        Route::post('/reset', [$controller, 'setreset']);
+        Route::post('/lupa', [$controller, 'setlupa']);
+        Route::post('/registrasi', [$controller, 'setregistrasi']);
     }
 
     public static function grup(string $path, string $controller)
@@ -82,7 +98,7 @@ class Route
         if ($akses == "index") {
             Lanjut::ke('/');
         } else if ($akses == "secure") {
-            Lanjut::ke('/login');
+            Lanjut::ke('/wellcome');
         }
 
         if ($callback === false) {
@@ -121,7 +137,6 @@ class Route
             if ($method == "post") {
                 $auth = new AuthUser;
                 if ($auth->isLogin()) {
-
                     $token = Input::get('_token');
                     if (Reader::scanner(sha1($token . getPin))) {
                         if ($opsi == "update" or $opsi == "delete") {
@@ -146,7 +161,6 @@ class Route
                     return $func->$act();
                 }
             } else {
-
                 if ($opsi == "edit" or $opsi == "detail" or $opsi == "konfirmasi") {
                     if (isset($_GET['id'])) {
                         $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
@@ -173,6 +187,7 @@ class Route
 
     public static function view(string $view, $data = null)
     {
+        Reader::acak();
         $layout = self::layoutRender();
         $css = self::cssRender();
         $top = self::topRender();
@@ -200,24 +215,27 @@ class Route
     {
         ob_start();
         $result = "";
-
-        // $dir = "assets/css/";
-        // $cdir = scandir($dir);
-        // foreach ($cdir as $key => $value){
-        //     if (!in_array($value,array(".",".."))){
-        //         if (is_dir($dir . DIRECTORY_SEPARATOR . $value)){
-        //             $result[$value] .= $dir . DIRECTORY_SEPARATOR . $value;
-        //         }else{
-        //             $result .= "<link rel='stylesheet' href='assets/css/".$value."'> \n";
-        //         }
-        //     }
-        // }
-        $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/bootstrap.css'> \n";
-        $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/animate.css'> \n";
-        $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/font-awesome.min.css'> \n";
-        $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/font.css'> \n";
-        $result .= "<link rel='stylesheet' href='" . weburl . "asset/js/datatables/datatables.css'> \n";
-        $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/app.css'> \n";
+        $dir = "asset/css/";
+        $cdir = scandir($dir);
+        foreach ($cdir as $key => $value) {
+            if (!in_array($value, array(".", ".."))) {
+                if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+                    $result[$value] .= $dir . DIRECTORY_SEPARATOR . $value;
+                } else {
+                    $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/" . $value . "'> \n";
+                }
+            }
+        }
+        $filecss = explode(',', Config::envReader('CSS_FILE'));
+        if (Config::envReader('CSS_FILE') != "") {
+            if (count($filecss) > 1) {
+                foreach ($filecss as $fcss) {
+                    $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/" . $fcss . "'> \n";
+                }
+            } else {
+                $result .= "<link rel='stylesheet' href='" . weburl . "asset/css/" . Config::envReader('CSS_FILE') . "'> \n";
+            }
+        }
         return $result . " " . ob_get_clean();
     }
 
@@ -255,27 +273,58 @@ class Route
     {
         ob_start();
         $result = "";
-        $result .= "<script src='" . weburl . "asset/js/jquery-3.6.0.min.js'></script> \n    ";
-        $result .= "<script src='" . weburl . "asset/js/abiesoft_ui.js'></script> \n    ";
+        $dresult = "";
+        $filejs = explode(',', Config::envReader('JS_FILE'));
+        $dir = "asset/js/";
+        $cdir = scandir($dir);
+        if (Config::envReader('JS_FILE') != "") {
+            if (count($filejs) > 1) {
+                foreach ($filejs as $fl) {
+                    $dresult .= $fl;
+                }
+            } else {
+                $dresult .= Config::envReader('JS_FILE');
+            }
+        }
+        foreach ($cdir as $key => $value) {
+            if (!in_array($value, array(".", ".."))) {
+                if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) {
+                    $result[$value] .= $dir . DIRECTORY_SEPARATOR . $value;
+                } else {
+                    if ($value != $dresult) {
+                        $result .= "<script src='" . weburl . "asset/js/" . $value . "'></script> \n    ";
+                    }
+                }
+            }
+        }
         return $result . "" . ob_get_clean();
     }
 
     public static function jsaRender(string $view): string
     {
         ob_start();
-        ///File JSA yang akan tampil di index
-        // if($view == "index"){
-        //     if(file_exists("asset/jsa/".$view.".abbay")){
-        //        include_once "asset/jsa/".$view.".abbay";
-        //     }
-        //     include_once "asset/jsa/realtime.abbay";
-        // }
-
-        ///File JSA yang akan tampil di page tertentu
-        // if(file_exists("asset/jsa/".str_replace(".","/",$view).".abbay")){
-        //     include_once "asset/jsa/".str_replace(".","/",$view).".abbay";
-        // }
-
-        return ob_get_clean();
+        $result = "";
+        if (page == 'login') {
+            $result .= "<script src='" . weburl . "asset/jsa/auth/login.js'></script> \n    ";
+        } else if (page == 'registrasi') {
+            $result .= "<script src='" . weburl . "asset/jsa/auth/registrasi.js'></script> \n    ";
+        } else if (page == 'lupa') {
+            $result .= "<script src='" . weburl . "asset/jsa/auth/lupa.js'></script> \n    ";
+        } else if (page == 'reset') {
+            $result .= "<script src='" . weburl . "asset/jsa/auth/reset.js'></script> \n    ";
+        } else {
+            ///// Jika page sudah login
+        }
+        $filejsa = explode(',', Config::envReader('JSA_FILE'));
+        if (Config::envReader('JSA_FILE') != "") {
+            if (count($filejsa) > 1) {
+                foreach ($filejsa as $fla) {
+                    $result .= "<script src='" . weburl . "asset/jsa/" . $fla . "'></script> \n    ";
+                }
+            } else {
+                $result .= "<script src='" . weburl . "asset/jsa/" . Config::envReader('JSA_FILE') . "'></script> \n    ";
+            }
+        }
+        return $result . " " . ob_get_clean();
     }
 }

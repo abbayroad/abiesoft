@@ -8,12 +8,18 @@ use AbieSoft\Sistem\Magic\Reader;
             <img src="/asset/properti/ilustrasi/il_login.png">
         </div>
         <div class='w50'>
-            <form method='post' id='login' name='login'>
-                <h1>Login</h1>
-                <span>Halo, selamat datang kembali di <?php echo namaweb . " " . infoweb; ?></span>
+            <form method='post' action='' id='registrasi' name='registrasi'>
+                <h1>Registrasi</h1>
+                <span>Form Registrasi User Baru</span>
                 <div id='msg_error'></div>
                 <div class='form-control'>
+                    <input type='text' id='nama' name='nama' placeholder="Nama">
+                </div>
+                <div class='form-control'>
                     <input type='text' id='username' name='username' placeholder="Username">
+                </div>
+                <div class='form-control'>
+                    <input type='text' id='email' name='email' placeholder="Email">
                 </div>
                 <div class='form-control'>
                     <input type='password' id='password' name='password' placeholder="Password">
@@ -21,8 +27,8 @@ use AbieSoft\Sistem\Magic\Reader;
                 </div>
                 <div class='form-bottom'>
                     <input type='hidden' value='<?php echo Reader::token(); ?>' id='_token' name='_token'>
-                    <button id='btnlogin' type='submit'>Login</button>
-                    <button class='clear' type='button' onclick="window.location.href='/registrasi'">Registrasi &#8594;</button>
+                    <button class='clear' type='button' onclick="window.location.href='/login'">&#8592; Login</button>
+                    <button id='btnregistrasi' type='submit'>Registrasi</button>
                 </div>
             </form>
         </div>

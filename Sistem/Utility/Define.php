@@ -26,8 +26,14 @@ class Define
         } else {
             $subpage = "";
         }
+
         define("page", $page);
         define("subpage", $subpage);
+
+        $webtitel = Config::envReader("WEB_TITEL");
+        $infoweb = Config::envReader("WEB_DES");
+        define("namaweb", $webtitel);
+        define("infoweb", $infoweb);
 
         $auth = new AuthUser();
         if ($auth->isLogin()) {

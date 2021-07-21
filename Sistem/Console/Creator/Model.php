@@ -94,7 +94,7 @@ class Model extends Command
         fwrite($createController, $isiDefault);
         $isiDefault = "    } \n \n";
         fwrite($createController, $isiDefault);
-        $isiDefault = "    public static function post(){ \n";
+        $isiDefault = "    public static function postCreate(){ \n";
         fwrite($createController, $isiDefault);
         $isiDefault = "        //return parent::create(tabel: self::tabel()); \n";
         fwrite($createController, $isiDefault);
@@ -106,7 +106,7 @@ class Model extends Command
         fwrite($createController, $isiDefault);
         $isiDefault = "    } \n \n";
         fwrite($createController, $isiDefault);
-        $isiDefault = "    public static function postDrop(id: $" . "" . "id){ \n";
+        $isiDefault = "    public static function postDrop($" . "" . "id){ \n";
         fwrite($createController, $isiDefault);
         $isiDefault = "        //return parent::drop(tabel: self::tabel(), id: $" . "" . "id); \n";
         fwrite($createController, $isiDefault);

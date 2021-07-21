@@ -41,9 +41,11 @@ class Request
         $auth = new AuthUser;
         if (
             $path == "/login"
-            or $path == "/konfirmasi"
+            or $path == "/lupa"
             or $path == "/reset"
             or $path == "/webservice"
+            or $path == "/wellcome"
+            or $path == "/registrasi"
         ) {
             if ($auth->isLogin()) {
                 return "index";

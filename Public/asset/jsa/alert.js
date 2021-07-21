@@ -1,15 +1,15 @@
 function gagal(txtStatus) { 
-    alert(txtStatus);
+    document.getElementById('msg_error').innerHTML = "<span class='msg_danger'>"+txtStatus+"</span>";
     return false;
 }
 
 function informasi(txtStatus) {
-    alert(txtStatus);
+    document.getElementById('msg_error').innerHTML = "<span class='msg_warning'>"+txtStatus+"</span>";
     return false;
 }
 
 function berhasil(txtStatus) {
-    alert(txtStatus);
+    document.getElementById('msg_error').innerHTML = "<span class='msg_success'>"+txtStatus+"</span>";
     return false;
 }
 
